@@ -20,7 +20,8 @@ class MemberController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'balance' => 'required|numeric',
-            'type' => 'required|string',
+            'location' => 'required|string|max:255',
+            
         ]);
 
         $member = Member::create($validatedData);

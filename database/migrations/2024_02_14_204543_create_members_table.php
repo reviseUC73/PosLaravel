@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('type');
-            $table->string('location');
+            $table->string('name')->nullable()->default(null);
+            $table->string('location')->nullable()->default(null);
             $table->decimal('balance', 10, 2)->default(0.00);
             $table->timestamps();
         });
