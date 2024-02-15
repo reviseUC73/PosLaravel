@@ -50,10 +50,19 @@ class ItemController extends Controller
         return response()->json($item);
     }
 
-    // delete method
-    public function destroy($id)
-    {
-        Item::destroy($id);
-        return response()->json(null, 204);
+        // delete method
+        public function destroy($id)
+        {
+            if (!$id) {
+                return response()->json(['message' => 'Invalid ID'], 400);
+            }
+
+            $item = Item::find($id);
+            if (!$item) {
+                return response()->json(['message' => 'Item not found'], 404);
+            }
+
+            Item::destroy($id);
+            return response()->json(['message' => 'Item removed'], 200);
+        }
     }
-}

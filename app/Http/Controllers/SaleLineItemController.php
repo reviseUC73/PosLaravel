@@ -15,6 +15,15 @@ class SaleLineItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
+    // index
+    public function index()
+    {
+        $saleLineItems = SaleLineItem::all();
+        return response()->json($saleLineItems);
+    }
+
+    // store (add)
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -33,20 +42,15 @@ class SaleLineItemController extends Controller
         return response()->json($saleLineItem, 201);
     }
 
-    public function destroy($id)
+    // remove
+    public function destroy($id) // If you're not using route model binding
     {
         $saleLineItem = SaleLineItem::findOrFail($id);
         $saleLineItem->delete();
-
-        return response()->json(null, Response::HTTP_NO_CONTENT); // 204 No Content
+        return response()->json(['message' => 'Sale line item deleted successfully'], 200);
     }
+    
 
-    // index
-    public function index()
-    {
-        $saleLineItems = SaleLineItem::all();
-        return response()->json($saleLineItems);
-    }
 
     // update
     public function update(Request $request, $id)

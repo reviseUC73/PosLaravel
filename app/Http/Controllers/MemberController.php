@@ -28,12 +28,14 @@ class MemberController extends Controller
         return response()->json($member, 201);
     }
 
+    
     // Display the specified member
     public function show($id)
     {
         $member = Member::findOrFail($id);
         return response()->json($member);
     }
+
 
     // Update the specified member
     public function update(Request $request, $id)
@@ -48,10 +50,17 @@ class MemberController extends Controller
         return response()->json($member);
     }
 
-    // Remove the specified member
-    public function destroy($id)
-    {
-        Member::destroy($id);
-        return response()->json(null, 204);
+
+        // Remove the specified member
+        public function destroy($id)
+        {
+            $member = Member::find($id);
+
+            if (!$member) {
+                return response()->json(['message' => 'Member not found'], 404);
+            }
+
+            $member->delete();
+            return response()->json(['message' => 'Member removed successfully'], 200);
+        }
     }
-}

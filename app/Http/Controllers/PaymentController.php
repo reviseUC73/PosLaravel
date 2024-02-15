@@ -49,6 +49,6 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         Payment::destroy($id);
-        return response()->json(null, 204);
+        return response()->json(null, 202);
     }
 }
