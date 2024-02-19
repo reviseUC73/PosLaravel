@@ -24,7 +24,7 @@ class SaleLineItemController extends Controller
     }
 
     // store (add)
-    public function store(Request $request)
+    public function addLineItem(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'sale_id' => 'required|exists:sales,id',
@@ -43,14 +43,12 @@ class SaleLineItemController extends Controller
     }
 
     // remove
-    public function destroy($id) // If you're not using route model binding
+    public function removeLineItem($id) // If you're not using route model binding
     {
         $saleLineItem = SaleLineItem::findOrFail($id);
         $saleLineItem->delete();
         return response()->json(['message' => 'Sale line item deleted successfully'], 200);
     }
-    
-
 
     // update
     public function update(Request $request, $id)
