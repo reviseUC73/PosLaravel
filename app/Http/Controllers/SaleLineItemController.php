@@ -69,4 +69,14 @@ class SaleLineItemController extends Controller
 
         return response()->json($saleLineItem);
     }
+
+    // In SaleLineItemController
+
+// Method to display the sale line items in a web view
+public function indexView()
+{
+    $saleLineItems = SaleLineItem::with(['sale', 'item'])->get(); // Adjust relationships as necessary
+    return view('saleLineItems.index', compact('saleLineItems'));
+}
+
 }

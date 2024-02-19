@@ -65,4 +65,33 @@ class ItemController extends Controller
             Item::destroy($id);
             return response()->json(['message' => 'Item removed'], 200);
         }
+
+
+
+public function indexView()
+{
+    $items = Item::all();
+    return view('items.index', ['items' =>$items]);
+}
+
+public function editView($id)
+    {
+        $item = Item::findOrFail($id);
+        return view('items.edit', compact('item'));
+    }
+
+public function updateView(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'description' => 'nullable|string',
+        ]);
+
+        $item = Item::findOrFail($id);
+        $item->update($validatedData);
+
+        return redirect()->route('items.index')->with('success', 'Item updated successfully');
+    }
+
     }

@@ -168,7 +168,11 @@ class PaymentController extends Controller
         return response()->json(['message' => 'Payment processing failed', 'error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
-
+public function indexView()
+{
+    $payments = Payment::with(['member', 'sale'])->get(); // Assuming relationships are defined
+    return view('payments.index', compact('payments'));
+}
 
     
 }

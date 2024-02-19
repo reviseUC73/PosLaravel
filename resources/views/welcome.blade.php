@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+@extends('layouts.app')
+
+@section('content')
+    <h1>Welcome to Our Application</h1>
+    <!-- Additional content goes here -->
+@endsection
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
