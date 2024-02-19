@@ -47,9 +47,10 @@ Route::apiResource('/items', ItemController::class);
 // Sales
 Route::get('/saleAll', [SaleController::class, 'showAll']); // View a sale details
 Route::get('/sales', [SaleController::class, 'showSaleDatailAll']); // View a sale details
-Route::get('/sales/{sale}', [SaleController::class, 'showSaleDatailById']); // View a sale details
+Route::get('/sales/{Idsale}', [SaleController::class, 'showSaleDatailById']); // View a sale details
 Route::post('/sales', [SaleController::class, 'openSale']); // Open a sale
-Route::delete('/sales/{sale}', [SaleController::class, 'closeSale']); // Close a sale
+Route::put('/sales/{Idsale}', [SaleController::class, 'update']); // Open a sale
+Route::delete('/sales/{Idsale}', [SaleController::class, 'closeSale']); // Close a sale
 
 // // Sale Line Items - Sale
 Route::post('/sale/sale-line-items', [SaleController::class, 'addLineItem']);

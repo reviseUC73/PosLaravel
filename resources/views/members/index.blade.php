@@ -7,6 +7,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Balance</th>
             <th>Location</th>
@@ -16,6 +17,7 @@
     <tbody>
         @foreach ($members as $member)
         <tr>
+            <td>{{ $member->id }}</td>
             <td>{{ $member->name }}</td>
             <td>{{ $member->balance }}</td>
             <td>{{ $member->location }}</td>
